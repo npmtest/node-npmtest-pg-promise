@@ -1,0 +1,1322 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-pg-promise/pg-promise/lib/types/prepared.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-pg-promise">npmtest-pg-promise (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-pg-promise/pg-promise/lib/types/prepared.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">4.9% <small>(5 / 102)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 58)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 3)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">4.9% <small>(5 / 102)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-pg-promise/pg-promise/lib/types/</a> &#187; prepared.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var $npm = {
+    os: require('os'),
+    utils: require('../utils'),
+    errors: require('../errors'),
+    QueryFile: require('../queryFile')
+};
+&nbsp;
+/**
+ * @constructor PreparedStatement
+ * @description
+ * **Alternative Syntax:** `PreparedStatement({name, text, values, ...})` &amp;#8658; {@link PreparedStatement}
+ *
+ * Constructs a new $[Prepared Statement] object.
+ *
+ * The alternative syntax supports advanced properties {@link PreparedStatement#binary binary}, {@link PreparedStatement#rowMode rowMode}
+ * and {@link PreparedStatement#rows rows}, which are passed into $[pg], but not used by the class.
+ *
+ * All properties can also be set after the object's construction.
+ *
+ * This type extends the basic `{name, text, values}` object, by replacing it, i.e. when the basic object is used
+ * with a query method, a new {@link PreparedStatement} object is created implicitly in its place.
+ *
+ * The type can be used in place of the `query` parameter, with any query method directly. And it never throws any error,
+ * leaving it for query methods to reject with {@link errors.PreparedStatementError PreparedStatementError}.
+ *
+ * The type is available from the library's root: `pgp.PreparedStatement`.
+ *
+ * @param {string} name
+ * An arbitrary name given to this particular prepared statement. It must be unique within a single session and is
+ * subsequently used to execute or deallocate a previously prepared statement.
+ *
+ * @param {string|QueryFile} text
+ * A non-empty query string or a {@link QueryFile} object.
+ *
+ * Only the basic variables (`$1`, `$2`, etc) can be used in the query, because $[Prepared Statements] are formatted by the database server.
+ *
+ * @param {array} [values]
+ * Query formatting values. When it is not an `Array` and not `null`/`undefined`, it is automatically wrapped into an array.
+ *
+ * @returns {PreparedStatement}
+ *
+ * @see
+ * {@link errors.PreparedStatementError PreparedStatementError},
+ * {@link http://www.postgresql.org/docs/9.5/static/sql-prepare.html PostgreSQL Prepared Statements}
+ *
+ * @example
+ *
+ * var PS = require('pg-promise').PreparedStatement;
+ *
+ * // Creating a complete Prepared Statement with parameters:
+ * var findUser = new PS('find-user', 'SELECT * FROM Users WHERE id = $1', [123]);
+ *
+ * db.one(findUser)
+ *     .then(user=&gt; {
+ *         // user found;
+ *     })
+ *     .catch(error=&gt; {
+ *         // error;
+ *     });
+ *
+ * @example
+ *
+ * var PS = require('pg-promise').PreparedStatement;
+ *
+ * // Creating a reusable Prepared Statement without values:
+ * var addUser = new PS('add-user', 'INSERT INTO Users(name, age) VALUES($1, $2)');
+ *
+ * // setting values explicitly:
+ * addUser.values = ['John', 30];
+ *
+ * db.none(addUser)
+ *     .then(()=&gt; {
+ *         // user added;
+ *     })
+ *     .catch(error=&gt; {
+ *         // error;
+ *     });
+ *
+ * // setting values implicitly, by passing them into the query method:
+ * db.none(addUser, ['Mike', 25])
+ *     .then(()=&gt; {
+ *         // user added;
+ *     })
+ *     .catch(error=&gt; {
+ *         // error;
+ *     });
+ */
+<span class="fstat-no" title="function not covered" >function PreparedStatement(name, text, values) {</span>
+<span class="cstat-no" title="statement not covered" >    if (!(this instanceof PreparedStatement)) {</span>
+<span class="cstat-no" title="statement not covered" >        return new PreparedStatement(name, text, values);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var currentError, PS = {}, changed = true, state = {</span>
+        name: name,
+        text: text,
+        binary: undefined,
+        rowMode: undefined,
+        rows: undefined
+    };
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function setValues(v) {</span>
+<span class="cstat-no" title="statement not covered" >        if (Array.isArray(v)) {</span>
+<span class="cstat-no" title="statement not covered" >            if (v.length) {</span>
+<span class="cstat-no" title="statement not covered" >                PS.values = v;</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                delete PS.values;</span>
+            }
+        } else {
+<span class="cstat-no" title="statement not covered" >            if ($npm.utils.isNull(v)) {</span>
+<span class="cstat-no" title="statement not covered" >                delete PS.values;</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                PS.values = [v];</span>
+            }
+        }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    setValues(values);</span>
+&nbsp;
+    /**
+     * @name PreparedStatement#name
+     * @type {string}
+     * @description
+     * An arbitrary name given to this particular prepared statement. It must be unique within a single session and is
+     * subsequently used to execute or deallocate a previously prepared statement.
+     */
+<span class="cstat-no" title="statement not covered" >    Object.defineProperty(this, 'name', {</span>
+        get: () =&gt; <span class="cstat-no" title="statement not covered" >state.name,</span>
+        set: value =&gt; {
+<span class="cstat-no" title="statement not covered" >            if (value !== state.name) {</span>
+<span class="cstat-no" title="statement not covered" >                state.name = value;</span>
+<span class="cstat-no" title="statement not covered" >                changed = true;</span>
+            }
+        }
+    });
+&nbsp;
+    /**
+     * @name PreparedStatement#text
+     * @type {string|QueryFile}
+     * @description
+     * A non-empty query string or a {@link QueryFile} object.
+     *
+     * Changing this property for the same {@link PreparedStatement#name name} will have no effect, because queries
+     * for Prepared Statements are cached, with {@link PreparedStatement#name name} being the cache key.
+     */
+<span class="cstat-no" title="statement not covered" >    Object.defineProperty(this, 'text', {</span>
+        get: () =&gt; <span class="cstat-no" title="statement not covered" >state.text,</span>
+        set: value =&gt; {
+<span class="cstat-no" title="statement not covered" >            if (value !== state.text) {</span>
+<span class="cstat-no" title="statement not covered" >                state.text = value;</span>
+<span class="cstat-no" title="statement not covered" >                changed = true;</span>
+            }
+        }
+    });
+&nbsp;
+    /**
+     * @name PreparedStatement#values
+     * @type {array}
+     * @description
+     * Query formatting parameters, depending on the type:
+     *
+     * - `null` / `undefined` means the query has no formatting parameters
+     * - `Array` - it is an array of formatting parameters
+     * - None of the above, means it is a single formatting value, which
+     *   is then automatically wrapped into an array
+     */
+<span class="cstat-no" title="statement not covered" >    Object.defineProperty(this, 'values', {</span>
+        get: () =&gt; <span class="cstat-no" title="statement not covered" >PS.values,</span>
+        set: value =&gt; {
+<span class="cstat-no" title="statement not covered" >            setValues(value);</span>
+        }
+    });
+&nbsp;
+    /**
+     * @name PreparedStatement#binary
+     * @type {boolean}
+     * @default undefined
+     * @description
+     * Activates binary result mode. The default is the text mode.
+     *
+     * @see {@link http://www.postgresql.org/docs/devel/static/protocol-flow.html#PROTOCOL-FLOW-EXT-QUERY Extended Query}
+     */
+<span class="cstat-no" title="statement not covered" >    Object.defineProperty(this, 'binary', {</span>
+        get: () =&gt; <span class="cstat-no" title="statement not covered" >state.binary,</span>
+        set: value =&gt; {
+<span class="cstat-no" title="statement not covered" >            if (value !== state.binary) {</span>
+<span class="cstat-no" title="statement not covered" >                state.binary = value;</span>
+<span class="cstat-no" title="statement not covered" >                changed = true;</span>
+            }
+        }
+    });
+&nbsp;
+    /**
+     * @name PreparedStatement#rowMode
+     * @type {string}
+     * @default undefined
+     * @description
+     * Changes the way data arrives to the client, with only one value supported by $[pg]:
+     *  - `rowMode = 'array'` will make all data rows arrive as arrays of values.
+     *    By default, rows arrive as objects.
+     */
+<span class="cstat-no" title="statement not covered" >    Object.defineProperty(this, 'rowMode', {</span>
+        get: () =&gt; <span class="cstat-no" title="statement not covered" >state.rowMode,</span>
+        set: value =&gt; {
+<span class="cstat-no" title="statement not covered" >            if (value !== state.rowMode) {</span>
+<span class="cstat-no" title="statement not covered" >                state.rowMode = value;</span>
+<span class="cstat-no" title="statement not covered" >                changed = true;</span>
+            }
+        }
+    });
+&nbsp;
+    /**
+     * @name PreparedStatement#rows
+     * @type {number}
+     * @description
+     * Number of rows to return at a time from a Prepared Statement's portal.
+     * The default is 0, which means that all rows must be returned at once.
+     */
+<span class="cstat-no" title="statement not covered" >    Object.defineProperty(this, 'rows', {</span>
+        get: () =&gt; <span class="cstat-no" title="statement not covered" >state.rows,</span>
+        set: value =&gt; {
+<span class="cstat-no" title="statement not covered" >            if (value !== state.rows) {</span>
+<span class="cstat-no" title="statement not covered" >                state.rows = value;</span>
+<span class="cstat-no" title="statement not covered" >                changed = true;</span>
+            }
+        }
+    });
+&nbsp;
+    /**
+     * @name PreparedStatement#error
+     * @type {errors.PreparedStatementError}
+     * @default undefined
+     * @description
+     * When in an error state, it is set to a {@link errors.PreparedStatementError PreparedStatementError} object. Otherwise, it is `undefined`.
+     *
+     * This property is primarily for internal use by the library.
+     */
+<span class="cstat-no" title="statement not covered" >    Object.defineProperty(this, 'error', {</span>
+        get: () =&gt; <span class="cstat-no" title="statement not covered" >currentError</span>
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if ($npm.utils.isObject(name, ['name'])) {</span>
+<span class="cstat-no" title="statement not covered" >        state.name = name.name;</span>
+<span class="cstat-no" title="statement not covered" >        state.text = name.text;</span>
+<span class="cstat-no" title="statement not covered" >        state.binary = name.binary;</span>
+<span class="cstat-no" title="statement not covered" >        state.rowMode = name.rowMode;</span>
+<span class="cstat-no" title="statement not covered" >        state.rows = name.rows;</span>
+<span class="cstat-no" title="statement not covered" >        setValues(name.values);</span>
+    }
+&nbsp;
+    /**
+     * @method PreparedStatement.parse
+     * @description
+     * Parses the current object and returns a simple `{name, text, values}`, if successful,
+     * or else it returns a {@link errors.PreparedStatementError PreparedStatementError} object.
+     *
+     * This method is primarily for internal use by the library.
+     *
+     * @returns {{name, text, values}|errors.PreparedStatementError}
+     */
+<span class="cstat-no" title="statement not covered" >    this.parse = () =&gt; {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var qf = state.text instanceof $npm.QueryFile ? state.text : null;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (!changed &amp;&amp; !qf) {</span>
+<span class="cstat-no" title="statement not covered" >            return PS;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var errors = [], values = PS.values;</span>
+<span class="cstat-no" title="statement not covered" >        PS = {</span>
+            name: state.name
+        };
+<span class="cstat-no" title="statement not covered" >        changed = true;</span>
+<span class="cstat-no" title="statement not covered" >        currentError = undefined;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (!$npm.utils.isText(PS.name)) {</span>
+<span class="cstat-no" title="statement not covered" >            errors.push('Property \'name\' must be a non-empty text string.');</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (qf) {</span>
+<span class="cstat-no" title="statement not covered" >            qf.prepare();</span>
+<span class="cstat-no" title="statement not covered" >            if (qf.error) {</span>
+<span class="cstat-no" title="statement not covered" >                PS.text = state.text;</span>
+<span class="cstat-no" title="statement not covered" >                errors.push(qf.error);</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                PS.text = qf.query;</span>
+            }
+        } else {
+<span class="cstat-no" title="statement not covered" >            PS.text = state.text;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (!$npm.utils.isText(PS.text)) {</span>
+<span class="cstat-no" title="statement not covered" >            errors.push('Property \'text\' must be a non-empty text string.');</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (!$npm.utils.isNull(values)) {</span>
+<span class="cstat-no" title="statement not covered" >            PS.values = values;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (state.binary !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >            PS.binary = state.binary;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (state.rowMode !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >            PS.rowMode = state.rowMode;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (state.rows !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >            PS.rows = state.rows;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (errors.length) {</span>
+<span class="cstat-no" title="statement not covered" >            return currentError = new $npm.errors.PreparedStatementError(errors[0], PS);</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        changed = false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return PS;</span>
+    };
+}
+&nbsp;
+/**
+ * @method PreparedStatement.toString
+ * @description
+ * Creates a well-formatted multi-line string that represents the object's current state.
+ *
+ * It is called automatically when writing the object into the console.
+ *
+ * @param {number} [level=0]
+ * Nested output level, to provide visual offset.
+ *
+ * @returns {string}
+ */
+PreparedStatement.prototype.toString = <span class="fstat-no" title="function not covered" >function (level) {</span>
+<span class="cstat-no" title="statement not covered" >    level = level &gt; 0 ? parseInt(level) : 0;</span>
+<span class="cstat-no" title="statement not covered" >    var gap = $npm.utils.messageGap(level + 1);</span>
+<span class="cstat-no" title="statement not covered" >    var ps = this.parse();</span>
+<span class="cstat-no" title="statement not covered" >    var lines = [</span>
+        'PreparedStatement {',
+        gap + 'name: ' + JSON.stringify(this.name)
+    ];
+<span class="cstat-no" title="statement not covered" >    if ($npm.utils.isText(ps.text)) {</span>
+<span class="cstat-no" title="statement not covered" >        lines.push(gap + 'text: "' + ps.text + '"');</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if (this.values !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >        lines.push(gap + 'values: ' + JSON.stringify(this.values));</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if (this.binary !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >        lines.push(gap + 'binary: ' + JSON.stringify(this.binary));</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if (this.rowMode !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >        lines.push(gap + 'rowMode: ' + JSON.stringify(this.rowMode));</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if (this.rows !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >        lines.push(gap + 'rows: ' + JSON.stringify(this.rows));</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if (this.error) {</span>
+<span class="cstat-no" title="statement not covered" >        lines.push(gap + 'error: ' + this.error.toString(level + 1));</span>
+    }
+<span class="cstat-no" title="statement not covered" >    lines.push($npm.utils.messageGap(level) + '}');</span>
+<span class="cstat-no" title="statement not covered" >    return lines.join($npm.os.EOL);</span>
+};
+&nbsp;
+module.exports = PreparedStatement;
+&nbsp;
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Tue Apr 11 2017 19:59:49 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>
