@@ -1,6 +1,6 @@
 # npmtest-pg-promise
 
-#### test coverage for  [pg-promise (v5.6.4)](https://github.com/vitaly-t/pg-promise)  [![npm package](https://img.shields.io/npm/v/npmtest-pg-promise.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-pg-promise) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-pg-promise.svg)](https://travis-ci.org/npmtest/node-npmtest-pg-promise)
+#### basic test coverage for  [pg-promise (v5.6.7)](https://github.com/vitaly-t/pg-promise)  [![npm package](https://img.shields.io/npm/v/npmtest-pg-promise.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-pg-promise) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-pg-promise.svg)](https://travis-ci.org/npmtest/node-npmtest-pg-promise)
 
 #### Promises interface for PostgreSQL
 
@@ -10,7 +10,7 @@
 |--:|:--|
 | coverage : | [![istanbul-coverage](https://npmtest.github.io/node-npmtest-pg-promise/build/coverage.badge.svg)](https://npmtest.github.io/node-npmtest-pg-promise/build/coverage.html/index.html)|
 | test-report : | [![test-report](https://npmtest.github.io/node-npmtest-pg-promise/build/test-report.badge.svg)](https://npmtest.github.io/node-npmtest-pg-promise/build/test-report.html)|
-| build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-pg-promise/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-pg-promise/tree/gh-pages/build)|
+| test-server-github : | [![github.com test-server](https://npmtest.github.io/node-npmtest-pg-promise/GitHub-Mark-32px.png)](https://npmtest.github.io/node-npmtest-pg-promise/build/app/index.html) | | build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-pg-promise/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-pg-promise/tree/gh-pages/build)|
 
 - [https://npmtest.github.io/node-npmtest-pg-promise/build/coverage.html/index.html](https://npmtest.github.io/node-npmtest-pg-promise/build/coverage.html/index.html)
 
@@ -62,8 +62,8 @@
     },
     "directories": {},
     "dist": {
-        "shasum": "80b18a2a1bdd9af7fb0087e01a1b87ada8559a71",
-        "tarball": "https://registry.npmjs.org/pg-promise/-/pg-promise-5.6.4.tgz"
+        "shasum": "e5700066d0b711957e5224b1039b14ddb12df54a",
+        "tarball": "https://registry.npmjs.org/pg-promise/-/pg-promise-5.6.7.tgz"
     },
     "engines": {
         "node": ">=4.0",
@@ -73,7 +73,7 @@
         "lib",
         "typescript"
     ],
-    "gitHead": "2e381403ff346114e169884e6ab8613989cb5356",
+    "gitHead": "19ec2930a40efd7c66157fb781ec3b319028165a",
     "homepage": "https://github.com/vitaly-t/pg-promise",
     "keywords": [
         "pg",
@@ -102,7 +102,8 @@
         "travis": "npm run lint && istanbul cover ./node_modules/jasmine-node/bin/jasmine-node test --captureExceptions && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
     },
     "typings": "typescript/pg-promise.d.ts",
-    "version": "5.6.4"
+    "version": "5.6.7",
+    "bin": {}
 }
 ```
 
